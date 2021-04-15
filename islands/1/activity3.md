@@ -5,13 +5,13 @@
 ### @explicitHints 1
 
 
-# NoCode
+# agent movements
 
 ```python
 ```
 
 ## Step 1
-Задание на переменные
+Напиши функции для управления агентом с помощью команд чата.
 
 
 ```ghost
