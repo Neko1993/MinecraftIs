@@ -1,0 +1,20 @@
+{
+    "name": "educationcontent",
+    "version": "8.0.2",
+    "dependencies": {
+        "core": "*",
+        "builder": "*"
+    },
+    "files": [
+        "islands/1/activity1.md",
+        "islands/1/activity2.md"
+    ],
+    "targetVersions": {
+        "target": "1.5.44",
+        "targetId": "minecraft"
+    },
+    "supportedTargets": [
+        "minecraft"
+    ],
+    "preferredEditor": "tsprj"
+}
