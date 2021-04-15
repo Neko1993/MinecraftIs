@@ -7,7 +7,8 @@
     },
     "files": [
         "islands/1/say.md",
-        "islands/1/variables.md"
+        "islands/1/variables.md",
+        "no_coding.md"
     ],
     "targetVersions": {
         "target": "1.5.44",
