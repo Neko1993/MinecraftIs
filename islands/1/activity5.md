@@ -16,17 +16,12 @@
 
 ```ghost
 ```python
-def plantSeed(direction):
-    agent.till(direction)
-    agent.place(direction)
-
-agent.move(LEFT, 3)
-plantSeed(DOWN)
-agent.move(RIGHT, 3)
 agent.move(FORWARD, 1)
-plantSeed(DOWN)
-agent.move(RIGHT, 4)
-agent.move(FORWARD, 1)
-plantSeed(DOWN)
+level = 0
+while agent.detect(AgentDetection.BLOCK, FORWARD):
+    if level == 0 or level == 3:
+        agent.place(FORWARD)
+    agent.move(UP, 1)
+    level += 1
 ```
 

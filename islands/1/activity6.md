@@ -5,30 +5,22 @@
 ### @explicitHints 1
 
 
-# farm 1
+# Apples for Marvin
 
 ```python
 ```
 
 ## Step 1
-Помоги фермеру посадить семена. Они уже в инвентаре агента, так что можешь начинать писать код. Места посадки обозначены факелами. Постарайся решить задачу одним запуском кода.
-
-Для обработки земли используй agent.till, а для посадки agent.place
+Собери яблоки для Марвина.
+Для этого напиши код, выполняющийся на сообщение в чате **Apple**. Поднимайся вверх, пока не обнаружишь препятствие сверху. После этого сорви яблоко командой agent.destroy(). Собери 5 яблок таким образом.
 
 
 ```ghost
 ```python
-def plantSeed(direction):
-    agent.till(direction)
-    agent.place(direction)
-
-agent.move(LEFT, 3)
-plantSeed(DOWN)
-agent.move(RIGHT, 3)
-agent.move(FORWARD, 1)
-plantSeed(DOWN)
-agent.move(RIGHT, 4)
-agent.move(FORWARD, 1)
-plantSeed(DOWN)
+def on_chat():
+    while not agent.detect(AgentDetection.BLOCK, UP):
+        agent.move(UP, 1)
+    agent.destroy(UP)
+player.on_chat("apple", on_chat)
 ```
 
