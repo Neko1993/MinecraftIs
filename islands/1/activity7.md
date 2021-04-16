@@ -16,17 +16,29 @@
 
 ```ghost
 ```python
-def plantSeed(direction):
-    agent.till(direction)
-    agent.place(direction)
+def f(steps):
+    agent.move(FORWARD, steps)
 
-agent.move(LEFT, 3)
-plantSeed(DOWN)
-agent.move(RIGHT, 3)
-agent.move(FORWARD, 1)
-plantSeed(DOWN)
-agent.move(RIGHT, 4)
-agent.move(FORWARD, 1)
-plantSeed(DOWN)
+def b(steps):
+    agent.move(BACK, steps)
+
+def l(steps):
+    agent.move(LEFT, steps)
+
+def r(steps):
+    agent.move(RIGHT, steps)
+
+def u(steps):
+    agent.move(UP, steps)
+
+def d(steps):
+    agent.move(DOWN, steps)
+
+player.on_chat('f', f)
+player.on_chat('d', d)
+player.on_chat('u', u)
+player.on_chat('b', b)
+player.on_chat('l', l)
+player.on_chat('r', r)
 ```
 
