@@ -5,7 +5,7 @@
 ### @explicitHints 1
 
 
-# Variables
+# Check blocks
 
 ```python
 ```
