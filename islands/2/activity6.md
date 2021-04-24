@@ -1,7 +1,7 @@
 ### @codeStart players set @s makecode 0
 ### @codeStop players set @s makecode 1
 
-### @hideIteration true 
+### @hideIteration false 
 ### @explicitHints 1
 
 
@@ -11,16 +11,22 @@
 ```
 
 ## Step 1
-Собери яблоки для Марвина.
-Для этого напиши код, выполняющийся на сообщение в чате **Apple**. Поднимайся вверх, пока не обнаружишь препятствие сверху. После этого сорви яблоко командой **agent.destroy()**. Собери 5 яблок таким образом.
-
-
-```ghost
+Для проверки руды Вам понадобится функция **check**. Добавьте в нее следующий код. Постарайтесь его понять:
 ```python
-def on_chat():
-    while not agent.detect(AgentDetection.BLOCK, UP):
-        agent.move(UP, 1)
-    agent.destroy(UP)
-player.on_chat("apple", on_chat)
+def check():
+    if agent.inspect(AgentInspection.BLOCK, FORWARD) == IRON_ORE:
+        return 4
+    else:
+        data = agent.inspect(AgentInspection.DATA, FORWARD)
+        if data == 0:
+            return 3
+        elif data == 15:
+            return 2
+        elif data == 11:
+            return 1
+    return 0
 ```
+
+## Step 2
+В обработчике сообщения, проверяйте чистоту руды. Если она меньше или равна 3, Агент должен разместить над собой блок из 2 слота. Иначе из первого. Выполните код 5 раз.
 

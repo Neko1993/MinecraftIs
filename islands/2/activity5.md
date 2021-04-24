@@ -11,17 +11,18 @@
 ```
 
 ## Step 1
-Помоги Маркусу починить лестницу. Запасные части уже в инвентаре Агента.
-Поднимайся вверх, пока видишь перед собой препятствие. Добавьте переменную в которой будете считать уровень над землей. Установите лестницу на 0м и 3м уровне.
+На команду в чате, Адент должен двигаться пока не достигнет конца шахты. Если перед ним **IRON_ORE**, то разрушаем блок и забираем руду с собой.
+Необходимо повторить для каждой из шахт. Агента можно перемещать с помощью свистка.
 
 ```ghost
 ```python
-agent.move(FORWARD, 1)
-level = 0
-while agent.detect(AgentDetection.BLOCK, FORWARD):
-    if level == 0 or level == 3:
-        agent.place(FORWARD)
-    agent.move(UP, 1)
-    level += 1
+def on_chat():
+    while not agent.detect(AgentDetection.BLOCK, FORWARD):
+        agent.move(FORWARD, 1)
+    if agent.inspect(AgentInspection.BLOCK, FORWARD) == IRON_ORE:
+        agent.destroy(FORWARD)
+        agent.collect_all()
+player.on_chat("run", on_chat)
+
 ```
 

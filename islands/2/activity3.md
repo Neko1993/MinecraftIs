@@ -1,7 +1,7 @@
 ### @codeStart players set @s makecode 0
 ### @codeStop players set @s makecode 1
 
-### @hideIteration true 
+### @hideIteration false 
 ### @explicitHints 1
 
 
@@ -11,34 +11,32 @@
 ```
 
 ## Step 1
-Напиши функции для управления агентом с помощью команд чата.
+Напиши функцию **check**, которая возвращает true, если под Агентом блок **WHEAT**
 
+## Step 2
+Напиши функции **wheat**  и **carrot** для уставновки отметок над Агентом, где какие семена посажены. Агенту уже выданы блоки, они расположены в 1 и 2 слотах. Для переключения между слотами используйте **agent.set_slot()**, где в качестве аргумента укажите номер слота. Для **wheat** используйте флаг с первого слота, для **carrot** со второго. 
+
+## Step 3
+Проверьте 4 точки и установите флаги в соответсвии с результатами проверки. Используйте цикл.
 
 ```ghost
 ```python
-def f(steps):
-    agent.move(FORWARD, steps)
+def check():
+    return agent.inspect(AgentInspection.BLOCK, DOWN) == WHEAT
 
-def b(steps):
-    agent.move(BACK, steps)
+def wheat():
+    agent.set_slot(1)
+    agent.place(UP)
 
-def l(steps):
-    agent.move(LEFT, steps)
+def carrot():
+    agent.set_slot(2)
+    agent.place(UP)
 
-def r(steps):
-    agent.move(RIGHT, steps)
-
-def u(steps):
-    agent.move(UP, steps)
-
-def d(steps):
-    agent.move(DOWN, steps)
-
-player.on_chat('f', f)
-player.on_chat('d', d)
-player.on_chat('u', u)
-player.on_chat('b', b)
-player.on_chat('l', l)
-player.on_chat('r', r)
+for i in range(4):
+    agent.move(FORWARD, 3)
+    if check():
+        accept()
+    else:
+        deny()
 ```
 
