@@ -11,23 +11,28 @@
 ```
 
 ## Step 1
-Part6
-Для проверки руды Вам понадобится функция **check**. Добавьте в нее следующий код. Постарайтесь его понять:
+Засади грядку с пшеницей. Над каждым участком проверяй, есть ли на нем **WHEAD** старая пшеница, если есть выведи в чат **WHEAD** и уничтож ее, если под тобой воздух, то просто выведи в чат **AIR**.
+
+```ghost
 ```python
-def check():
-    if agent.inspect(AgentInspection.BLOCK, FORWARD) == IRON_ORE:
-        return 4
-    else:
-        data = agent.inspect(AgentInspection.DATA, FORWARD)
-        if data == 0:
-            return 3
-        elif data == 15:
-            return 2
-        elif data == 11:
-            return 1
-    return 0
+def plant(length):
+    for i in range(length):
+        agent.move(FORWARD, 1)
+        block = agent.inspect(AgentInspection.BLOCK, DOWN)
+        if block == WHEAT:
+            agent.destroy(DOWN)
+            agent.place(DOWN)
+            player.say('WHEAT')
+        elif block == AIR:
+            agent.place(DOWN)
+            player.say('AIR')
+   
+
+def done(length, width):
+    for i in range(width):
+        plant(length)
+        agent.move(BACK, length)
+        agent.move(LEFT, 1)
+
+player.on_chat("plant", done)
 ```
-
-## Step 2
-В обработчике сообщения, проверяйте чистоту руды. Если она меньше или равна 3, Агент должен разместить над собой блок из 2 слота. Иначе из первого. Выполните код 5 раз.
-

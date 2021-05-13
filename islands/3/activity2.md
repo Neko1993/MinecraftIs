@@ -11,25 +11,18 @@
 ```
 
 ## Step 1
-Part2
+Напиши функцию - обработчик сообщения **bridge**. Используй цикл **for** для постройки моста шириной в один блок.
 
-## Step 2
-Напиши функцию **check_ground_stable** в которой, агент пробует сломать блок под собой. Если у него выходит(проверьте командой **agent.detect**), выведите в чат **Unstable**.
+Материалы уже выданы агенту
 
-## Step 3
-При команде в чате **check** двигайтесь вперед и проверяйте блоки на стабильность.
 
 ```ghost
 ```python
-def check_ground_stable():
-    agent.destroy(DOWN)
-    if not agent.detect(AgentDetection.BLOCK, DOWN):
-        player.say('Unstable')
-
-def on_chat():
-    for i in range(4):
-        check_ground_stable()
+def bridge(n):
+    for i in range(n):
         agent.move(FORWARD, 1)
-player.on_chat("check", on_chat)
+        agent.place(DOWN)
+
+player.on_chat("bridge", bridge)
 ```
 

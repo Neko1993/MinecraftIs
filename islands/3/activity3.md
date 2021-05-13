@@ -11,33 +11,28 @@
 ```
 
 ## Step 1
-Part3
-Напиши функцию **check**, которая возвращает True, если под Агентом блок **WHEAT**, иначе возвращает False
+Каждая книга в библиотеке имеет свой номер. Что бы его проверить необходимо использовать команду **agent.inspect(AgentInspection.DATA, FORWARD)**. Тебе нужно найти книгу с номером 9 и отметить ее поставив блок позади себя. 
 
-## Step 2
-Напиши функции **wheat**  и **carrot** для уставновки отметок над Агентом, где какие семена посажены. Агенту уже выданы блоки, они расположены в 1 и 2 слотах. Для переключения между слотами используйте **agent.set_slot()**, где в качестве аргумента укажите номер слота. Для **wheat** используйте флаг с первого слота, для **carrot** со второго. 
-
-## Step 3
-Проверьте 4 точки и установите флаги в соответсвии с результатами проверки. Используйте цикл.
+Материалы уже выданы Агенту.
 
 ```ghost
 ```python
-def check():
-    return agent.inspect(AgentInspection.BLOCK, DOWN) == WHEAT
-
-def wheat():
-    agent.set_slot(1)
-    agent.place(UP)
-
-def carrot():
-    agent.set_slot(2)
-    agent.place(UP)
-
-for i in range(4):
-    agent.move(FORWARD, 3)
-    if check():
-        accept()
+def  check_book():
+    if agent.inspect(AgentInspection.DATA, FORWARD) == 9:
+        return True
     else:
-        deny()
+        return False
+
+def mark_book():
+    agent.place(BACK)
+
+def check_shelf():
+    for i in range(5):
+        if check_book():
+            mark_book()
+        agent.move(UP, 1)
+
+player.on_chat("check", check_shelf)
+
 ```
 
