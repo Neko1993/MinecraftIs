@@ -35,8 +35,8 @@ def carrot():
 for i in range(4):
     agent.move(FORWARD, 3)
     if check():
-        accept()
+        wheat()
     else:
-        deny()
+        carrot()
 ```
 

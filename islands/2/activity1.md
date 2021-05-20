@@ -37,7 +37,7 @@ weather = [RAIN, CLEAR, THUNDER]
 
 def get_weather():
     global weather
-    w = randint(0, 3)
+    w = randint(0, 2)
     return weather[w]
 
 def on_chat():
